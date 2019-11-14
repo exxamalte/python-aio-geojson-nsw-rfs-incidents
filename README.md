@@ -48,7 +48,10 @@ async def main() -> None:
         # Home Coordinates: Latitude: -33.0, Longitude: 150.0
         # Filter radius: 50 km
         # Filter categories: 'Advice'
-        feed = NswRuralFireServiceIncidentsFeed(websession, (-33.0, 150.0), filter_radius=50, filter_categories=['Advice'])
+        feed = NswRuralFireServiceIncidentsFeed(websession, 
+                                                (-33.0, 150.0), 
+                                                filter_radius=50, 
+                                                filter_categories=['Advice'])
         status, entries = await feed.update()
         print(status)
         print(entries)
@@ -62,7 +65,7 @@ Each feed entry is populated with the following properties:
 |--------------------|-----------------------------------------------------------------------------------------------------|----------------|
 | geometry           | All geometry details of this entry.                                                                 | `geometry`     |
 | coordinates        | Best coordinates (latitude, longitude) of this entry.                                               | `geometry`     |
-| external_id        | The unique public identifier for this quake.                                                        | `guid`         |
+| external_id        | The unique public identifier for this incident.                                                     | `guid`         |
 | title              | Title of this entry.                                                                                | `title`        |
 | attribution        | Attribution of the feed.                                                                            | n/a            |
 | distance_to_home   | Distance in km of this entry to the home coordinates.                                               | n/a            |
