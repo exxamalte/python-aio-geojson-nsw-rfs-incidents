@@ -1,9 +1,11 @@
 """NSW Rural Fire Service Incidents feed."""
 import logging
-from typing import Optional
+from typing import List, Optional, Tuple, Dict
+from datetime import datetime
 
 from aio_geojson_client.feed import GeoJsonFeed
 from aiohttp import ClientSession
+from geojson import FeatureCollection
 
 from .consts import URL
 from .feed_entry import NswRuralFireServiceIncidentsFeedEntry
@@ -11,14 +13,15 @@ from .feed_entry import NswRuralFireServiceIncidentsFeedEntry
 _LOGGER = logging.getLogger(__name__)
 
 
-class NswRuralFireServiceIncidentsFeed(GeoJsonFeed):
+class NswRuralFireServiceIncidentsFeed(
+        GeoJsonFeed[NswRuralFireServiceIncidentsFeedEntry]):
     """NSW Rural Fire Services Incidents feed."""
 
     def __init__(self,
                  websession: ClientSession,
-                 home_coordinates,
-                 filter_radius=None,
-                 filter_categories=None):
+                 home_coordinates: Tuple[float, float],
+                 filter_radius: float = None,
+                 filter_categories: List[str] = None):
         """Initialise this service."""
         super().__init__(websession,
                          home_coordinates,
@@ -32,11 +35,14 @@ class NswRuralFireServiceIncidentsFeed(GeoJsonFeed):
             self.__class__.__name__, self._home_coordinates, self._url,
             self._filter_radius, self._filter_categories)
 
-    def _new_entry(self, home_coordinates, feature, global_data):
+    def _new_entry(self, home_coordinates: Tuple[float, float], feature,
+                   global_data: Dict) -> NswRuralFireServiceIncidentsFeedEntry:
         """Generate a new entry."""
         return NswRuralFireServiceIncidentsFeedEntry(home_coordinates, feature)
 
-    def _filter_entries(self, entries):
+    def _filter_entries(self,
+                        entries: List[NswRuralFireServiceIncidentsFeedEntry]) \
+            -> List[NswRuralFireServiceIncidentsFeedEntry]:
         """Filter the provided entries."""
         filtered_entries = super()._filter_entries(entries)
         if self._filter_categories:
@@ -45,7 +51,10 @@ class NswRuralFireServiceIncidentsFeed(GeoJsonFeed):
                                     filtered_entries))
         return filtered_entries
 
-    def _extract_last_timestamp(self, feed_entries):
+    def _extract_last_timestamp(
+            self,
+            feed_entries: List[NswRuralFireServiceIncidentsFeedEntry]) \
+            -> Optional[datetime]:
         """Determine latest (newest) entry from the filtered feed."""
         if feed_entries:
             dates = sorted(filter(
@@ -54,6 +63,6 @@ class NswRuralFireServiceIncidentsFeed(GeoJsonFeed):
             return dates[0]
         return None
 
-    def _extract_from_feed(self, feed) -> Optional:
+    def _extract_from_feed(self, feed: FeatureCollection) -> Optional[Dict]:
         """Extract global metadata from feed."""
         return None

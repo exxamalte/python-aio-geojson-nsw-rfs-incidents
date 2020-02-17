@@ -6,8 +6,9 @@ from time import strptime
 
 import logging
 import re
-from typing import Optional
+from typing import Optional, Tuple
 from aio_geojson_client.feed_entry import FeedEntry
+from geojson import Feature
 
 from .consts import ATTR_TITLE, ATTRIBUTION, ATTR_CATEGORY, \
     ATTR_GUID, ATTR_PUB_DATE, ATTR_DESCRIPTION, REGEXP_ATTR_LOCATION, \
@@ -21,7 +22,9 @@ _LOGGER = logging.getLogger(__name__)
 class NswRuralFireServiceIncidentsFeedEntry(FeedEntry):
     """NSW Rural Fire Service Incidents feed entry."""
 
-    def __init__(self, home_coordinates, feature):
+    def __init__(self,
+                 home_coordinates: Tuple[float, float],
+                 feature: Feature):
         """Initialise this service."""
         super().__init__(home_coordinates, feature)
 
