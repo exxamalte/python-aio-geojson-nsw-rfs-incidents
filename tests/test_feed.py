@@ -35,7 +35,7 @@ async def test_update_ok(aresponses, event_loop):
         status, entries = await feed.update()
         assert status == UPDATE_OK
         assert entries is not None
-        assert len(entries) == 3
+        assert len(entries) == 4
 
         feed_entry = entries[0]
         assert feed_entry.title == "Title 1"
@@ -66,6 +66,12 @@ async def test_update_ok(aresponses, event_loop):
         feed_entry = entries[2]
         assert feed_entry.title == "Title 3"
         assert feed_entry.category is None
+
+        feed_entry = entries[3]
+        assert feed_entry.title == "Badja Forest Rd, Countegany"
+        assert feed_entry.geometries is not None
+        assert len(feed_entry.geometries) == 4
+        assert round(abs(feed_entry.distance_to_home - 578.5), 1) == 0
 
 
 @pytest.mark.asyncio

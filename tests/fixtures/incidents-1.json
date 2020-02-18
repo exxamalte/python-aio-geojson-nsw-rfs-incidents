@@ -50,6 +50,112 @@
         "pubDate": "21/09/2018 6:40:00 AM",
         "description": "ALERT LEVEL: Alert Level 3 <br />LOCATION: Location 3 <br />COUNCIL AREA: Council 3 <br />STATUS: Status 3 <br />TYPE: Type 3 <br />FIRE: Yes <br />SIZE: 20 ha <br />RESPONSIBLE AGENCY: Agency 3 <br />UPDATED: 21 Sep 2018 16:55"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": [
+          {
+            "type": "Point",
+            "coordinates": [
+              149.92444759700004,
+              -36.25492599599994
+            ]
+          },
+          {
+            "type": "GeometryCollection",
+            "geometries": [
+              {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      149.485665224,
+                      -36.1511335279999
+                    ],
+                    [
+                      149.483464222,
+                      -36.151490447
+                    ],
+                    [
+                      149.483821141,
+                      -36.1508360949999
+                    ],
+                    [
+                      149.485903169,
+                      -36.1503602029999
+                    ],
+                    [
+                      149.485665224,
+                      -36.1511335279999
+                    ]
+                  ]
+                ]
+              },
+              {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      149.977462662,
+                      -36.298153809
+                    ],
+                    [
+                      149.977273287,
+                      -36.2983332659999
+                    ],
+                    [
+                      149.976999549,
+                      -36.298164497
+                    ],
+                    [
+                      149.977178046,
+                      -36.297968617
+                    ],
+                    [
+                      149.977462662,
+                      -36.298153809
+                    ]
+                  ]
+                ]
+              },
+              {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      150.120373861,
+                      -36.1504500899999
+                    ],
+                    [
+                      150.12035215,
+                      -36.1505477979999
+                    ],
+                    [
+                      150.120256859,
+                      -36.150507842
+                    ],
+                    [
+                      150.120373861,
+                      -36.1504500899999
+                    ]
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "properties": {
+        "title": "Badja Forest Rd, Countegany",
+        "link": "http://www.rfs.nsw.gov.au/fire-information/fires-near-me",
+        "category": "Advice",
+        "guid": "https://incidents.rfs.nsw.gov.au/api/v1/incidents/366937",
+        "guid_isPermaLink": "true",
+        "pubDate": "18/02/2018 12:11:00 AM",
+        "description": "ALERT LEVEL: Advice <br />LOCATION: Badja Forest Rd, Countegany, NSW 2630 <br />COUNCIL AREA: Eurobodalla <br />STATUS: Under control <br />TYPE: Bush Fire <br />FIRE: Yes <br />SIZE: 315512 ha <br />RESPONSIBLE AGENCY: Rural Fire Service <br />UPDATED: 18 Feb 2018 11:11"
+      }
     }
   ]
 }
