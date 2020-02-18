@@ -2,8 +2,7 @@
 
 ## 0.3 (18/02/2020)
 * Bumped version of upstream GeoJSON library.
-* Added status callback.
-* Internal code improvements.
+* Fixes extraction of polygons from a feed (polygon without hole only).
 
 ## 0.2 (17/02/2020)
 * Bumped version of upstream GeoJSON library.
