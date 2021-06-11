@@ -10,11 +10,22 @@ from typing import Optional, Tuple
 from aio_geojson_client.feed_entry import FeedEntry
 from geojson import Feature
 
-from .consts import ATTR_TITLE, ATTRIBUTION, ATTR_CATEGORY, \
-    ATTR_GUID, ATTR_PUB_DATE, ATTR_DESCRIPTION, REGEXP_ATTR_LOCATION, \
-    REGEXP_ATTR_COUNCIL_AREA, REGEXP_ATTR_STATUS, REGEXP_ATTR_TYPE, \
-    REGEXP_ATTR_FIRE, REGEXP_ATTR_SIZE, REGEXP_ATTR_RESPONSIBLE_AGENCY, \
-    CUSTOM_ATTRIBUTE
+from .consts import (
+    ATTR_TITLE,
+    ATTRIBUTION,
+    ATTR_CATEGORY,
+    ATTR_GUID,
+    ATTR_PUB_DATE,
+    ATTR_DESCRIPTION,
+    REGEXP_ATTR_LOCATION,
+    REGEXP_ATTR_COUNCIL_AREA,
+    REGEXP_ATTR_STATUS,
+    REGEXP_ATTR_TYPE,
+    REGEXP_ATTR_FIRE,
+    REGEXP_ATTR_SIZE,
+    REGEXP_ATTR_RESPONSIBLE_AGENCY,
+    CUSTOM_ATTRIBUTE,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -22,9 +33,7 @@ _LOGGER = logging.getLogger(__name__)
 class NswRuralFireServiceIncidentsFeedEntry(FeedEntry):
     """NSW Rural Fire Service Incidents feed entry."""
 
-    def __init__(self,
-                 home_coordinates: Tuple[float, float],
-                 feature: Feature):
+    def __init__(self, home_coordinates: Tuple[float, float], feature: Feature):
         """Initialise this service."""
         super().__init__(home_coordinates, feature)
 
@@ -55,8 +64,9 @@ class NswRuralFireServiceIncidentsFeedEntry(FeedEntry):
         if publication_date:
             # Parse the date. Example: 15/09/2018 9:31:00 AM
             date_struct = strptime(publication_date, "%d/%m/%Y %I:%M:%S %p")
-            publication_date = datetime.fromtimestamp(calendar.timegm(
-                date_struct), tz=pytz.utc)
+            publication_date = datetime.fromtimestamp(
+                calendar.timegm(date_struct), tz=pytz.utc
+            )
         return publication_date
 
     @property
@@ -95,7 +105,7 @@ class NswRuralFireServiceIncidentsFeedEntry(FeedEntry):
     @property
     def fire(self) -> bool:
         """Return if this entry represents a fire or not."""
-        return self._search_in_description(REGEXP_ATTR_FIRE) == 'Yes'
+        return self._search_in_description(REGEXP_ATTR_FIRE) == "Yes"
 
     @property
     def size(self) -> str:
