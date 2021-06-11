@@ -16,22 +16,23 @@ async def test_update_ok(aresponses, event_loop):
     """Test updating feed is ok."""
     home_coordinates = (-31.0, 151.0)
     aresponses.add(
-        'www.rfs.nsw.gov.au',
-        '/feeds/majorIncidents.json',
-        'get',
-        aresponses.Response(text=load_fixture('incidents-1.json'),
-                            status=200),
+        "www.rfs.nsw.gov.au",
+        "/feeds/majorIncidents.json",
+        "get",
+        aresponses.Response(text=load_fixture("incidents-1.json"), status=200),
         match_querystring=True,
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
 
         feed = NswRuralFireServiceIncidentsFeed(websession, home_coordinates)
-        assert repr(feed) == "<NswRuralFireServiceIncidentsFeed(" \
-                             "home=(-31.0, 151.0), " \
-                             "url=https://www.rfs.nsw.gov.au" \
-                             "/feeds/majorIncidents.json, " \
-                             "radius=None, categories=None)>"
+        assert (
+            repr(feed) == "<NswRuralFireServiceIncidentsFeed("
+            "home=(-31.0, 151.0), "
+            "url=https://www.rfs.nsw.gov.au"
+            "/feeds/majorIncidents.json, "
+            "radius=None, categories=None)>"
+        )
         status, entries = await feed.update()
         assert status == UPDATE_OK
         assert entries is not None
@@ -43,11 +44,10 @@ async def test_update_ok(aresponses, event_loop):
         assert feed_entry.external_id == "1234"
         assert feed_entry.coordinates == (-37.2345, 149.1234)
         assert round(abs(feed_entry.distance_to_home - 714.4), 1) == 0
-        assert repr(feed_entry) == "<NswRuralFireServiceIncidents" \
-                                   "FeedEntry(id=1234)>"
-        assert feed_entry.publication_date \
-            == datetime.datetime(2018, 9, 21, 6, 30,
-                                 tzinfo=datetime.timezone.utc)
+        assert repr(feed_entry) == "<NswRuralFireServiceIncidents" "FeedEntry(id=1234)>"
+        assert feed_entry.publication_date == datetime.datetime(
+            2018, 9, 21, 6, 30, tzinfo=datetime.timezone.utc
+        )
         assert feed_entry.location == "Location 1"
         assert feed_entry.council_area == "Council 1"
         assert feed_entry.status == "Status 1"
@@ -79,23 +79,25 @@ async def test_update_ok_with_categories(aresponses, event_loop):
     """Test updating feed is ok, filtered by category."""
     home_coordinates = (-31.0, 151.0)
     aresponses.add(
-        'www.rfs.nsw.gov.au',
-        '/feeds/majorIncidents.json',
-        'get',
-        aresponses.Response(text=load_fixture('incidents-1.json'),
-                            status=200),
+        "www.rfs.nsw.gov.au",
+        "/feeds/majorIncidents.json",
+        "get",
+        aresponses.Response(text=load_fixture("incidents-1.json"), status=200),
         match_querystring=True,
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
 
         feed = NswRuralFireServiceIncidentsFeed(
-            websession, home_coordinates, filter_categories=['Category 1'])
-        assert repr(feed) == "<NswRuralFireServiceIncidentsFeed(" \
-                             "home=(-31.0, 151.0), " \
-                             "url=https://www.rfs.nsw.gov.au" \
-                             "/feeds/majorIncidents.json, " \
-                             "radius=None, categories=['Category 1'])>"
+            websession, home_coordinates, filter_categories=["Category 1"]
+        )
+        assert (
+            repr(feed) == "<NswRuralFireServiceIncidentsFeed("
+            "home=(-31.0, 151.0), "
+            "url=https://www.rfs.nsw.gov.au"
+            "/feeds/majorIncidents.json, "
+            "radius=None, categories=['Category 1'])>"
+        )
         status, entries = await feed.update()
         assert status == UPDATE_OK
         assert entries is not None
@@ -105,8 +107,7 @@ async def test_update_ok_with_categories(aresponses, event_loop):
         assert feed_entry is not None
         assert feed_entry.title == "Title 1"
         assert feed_entry.category == "Category 1"
-        assert repr(feed_entry) == "<NswRuralFireServiceIncidents" \
-                                   "FeedEntry(id=1234)>"
+        assert repr(feed_entry) == "<NswRuralFireServiceIncidents" "FeedEntry(id=1234)>"
 
 
 @pytest.mark.asyncio
@@ -114,22 +115,23 @@ async def test_empty_feed(aresponses, event_loop):
     """Test updating feed is ok when feed does not contain any entries."""
     home_coordinates = (-41.2, 174.7)
     aresponses.add(
-        'www.rfs.nsw.gov.au',
-        '/feeds/majorIncidents.json',
-        'get',
-        aresponses.Response(text=load_fixture('incidents-2.json'),
-                            status=200),
+        "www.rfs.nsw.gov.au",
+        "/feeds/majorIncidents.json",
+        "get",
+        aresponses.Response(text=load_fixture("incidents-2.json"), status=200),
         match_querystring=True,
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
 
         feed = NswRuralFireServiceIncidentsFeed(websession, home_coordinates)
-        assert repr(feed) == "<NswRuralFireServiceIncidentsFeed(" \
-                             "home=(-41.2, 174.7), " \
-                             "url=https://www.rfs.nsw.gov.au" \
-                             "/feeds/majorIncidents.json, " \
-                             "radius=None, categories=None)>"
+        assert (
+            repr(feed) == "<NswRuralFireServiceIncidentsFeed("
+            "home=(-41.2, 174.7), "
+            "url=https://www.rfs.nsw.gov.au"
+            "/feeds/majorIncidents.json, "
+            "radius=None, categories=None)>"
+        )
         status, entries = await feed.update()
         assert status == UPDATE_OK
         assert entries is not None

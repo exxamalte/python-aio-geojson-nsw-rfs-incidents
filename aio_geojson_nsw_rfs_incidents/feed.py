@@ -14,52 +14,60 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class NswRuralFireServiceIncidentsFeed(
-        GeoJsonFeed[NswRuralFireServiceIncidentsFeedEntry]):
+    GeoJsonFeed[NswRuralFireServiceIncidentsFeedEntry]
+):
     """NSW Rural Fire Services Incidents feed."""
 
-    def __init__(self,
-                 websession: ClientSession,
-                 home_coordinates: Tuple[float, float],
-                 filter_radius: float = None,
-                 filter_categories: List[str] = None):
+    def __init__(
+        self,
+        websession: ClientSession,
+        home_coordinates: Tuple[float, float],
+        filter_radius: float = None,
+        filter_categories: List[str] = None,
+    ):
         """Initialise this service."""
-        super().__init__(websession,
-                         home_coordinates,
-                         URL,
-                         filter_radius=filter_radius)
+        super().__init__(websession, home_coordinates, URL, filter_radius=filter_radius)
         self._filter_categories = filter_categories
 
     def __repr__(self):
         """Return string representation of this feed."""
-        return '<{}(home={}, url={}, radius={}, categories={})>'.format(
-            self.__class__.__name__, self._home_coordinates, self._url,
-            self._filter_radius, self._filter_categories)
+        return "<{}(home={}, url={}, radius={}, categories={})>".format(
+            self.__class__.__name__,
+            self._home_coordinates,
+            self._url,
+            self._filter_radius,
+            self._filter_categories,
+        )
 
-    def _new_entry(self, home_coordinates: Tuple[float, float], feature,
-                   global_data: Dict) -> NswRuralFireServiceIncidentsFeedEntry:
+    def _new_entry(
+        self, home_coordinates: Tuple[float, float], feature, global_data: Dict
+    ) -> NswRuralFireServiceIncidentsFeedEntry:
         """Generate a new entry."""
         return NswRuralFireServiceIncidentsFeedEntry(home_coordinates, feature)
 
-    def _filter_entries(self,
-                        entries: List[NswRuralFireServiceIncidentsFeedEntry]) \
-            -> List[NswRuralFireServiceIncidentsFeedEntry]:
+    def _filter_entries(
+        self, entries: List[NswRuralFireServiceIncidentsFeedEntry]
+    ) -> List[NswRuralFireServiceIncidentsFeedEntry]:
         """Filter the provided entries."""
         filtered_entries = super()._filter_entries(entries)
         if self._filter_categories:
-            filtered_entries = list(filter(lambda entry:
-                                    entry.category in self._filter_categories,
-                                    filtered_entries))
+            filtered_entries = list(
+                filter(
+                    lambda entry: entry.category in self._filter_categories,
+                    filtered_entries,
+                )
+            )
         return filtered_entries
 
     def _extract_last_timestamp(
-            self,
-            feed_entries: List[NswRuralFireServiceIncidentsFeedEntry]) \
-            -> Optional[datetime]:
+        self, feed_entries: List[NswRuralFireServiceIncidentsFeedEntry]
+    ) -> Optional[datetime]:
         """Determine latest (newest) entry from the filtered feed."""
         if feed_entries:
-            dates = sorted(filter(
-                None, [entry.publication_date for entry in feed_entries]),
-                reverse=True)
+            dates = sorted(
+                filter(None, [entry.publication_date for entry in feed_entries]),
+                reverse=True,
+            )
             return dates[0]
         return None
 
