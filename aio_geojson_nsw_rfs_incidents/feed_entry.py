@@ -1,30 +1,30 @@
 """NSW Rural Fire Service Incidents feed entry."""
-import pytz
 import calendar
-from datetime import datetime
-from time import strptime
-
 import logging
 import re
+from datetime import datetime
+from time import strptime
 from typing import Optional, Tuple
+
+import pytz
 from aio_geojson_client.feed_entry import FeedEntry
 from geojson import Feature
 
 from .consts import (
-    ATTR_TITLE,
-    ATTRIBUTION,
     ATTR_CATEGORY,
+    ATTR_DESCRIPTION,
     ATTR_GUID,
     ATTR_PUB_DATE,
-    ATTR_DESCRIPTION,
-    REGEXP_ATTR_LOCATION,
+    ATTR_TITLE,
+    ATTRIBUTION,
+    CUSTOM_ATTRIBUTE,
     REGEXP_ATTR_COUNCIL_AREA,
+    REGEXP_ATTR_FIRE,
+    REGEXP_ATTR_LOCATION,
+    REGEXP_ATTR_RESPONSIBLE_AGENCY,
+    REGEXP_ATTR_SIZE,
     REGEXP_ATTR_STATUS,
     REGEXP_ATTR_TYPE,
-    REGEXP_ATTR_FIRE,
-    REGEXP_ATTR_SIZE,
-    REGEXP_ATTR_RESPONSIBLE_AGENCY,
-    CUSTOM_ATTRIBUTE,
 )
 
 _LOGGER = logging.getLogger(__name__)

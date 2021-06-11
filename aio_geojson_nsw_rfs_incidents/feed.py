@@ -1,7 +1,7 @@
 """NSW Rural Fire Service Incidents feed."""
 import logging
-from typing import List, Optional, Tuple, Dict
 from datetime import datetime
+from typing import Dict, List, Optional, Tuple
 
 from aio_geojson_client.feed import GeoJsonFeed
 from aiohttp import ClientSession

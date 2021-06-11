@@ -3,7 +3,6 @@ import datetime
 
 import aiohttp
 import pytest
-
 from aio_geojson_client.consts import UPDATE_OK
 
 from aio_geojson_nsw_rfs_incidents.consts import ATTRIBUTION
