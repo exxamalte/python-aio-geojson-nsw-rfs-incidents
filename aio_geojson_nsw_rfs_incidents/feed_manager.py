@@ -1,5 +1,5 @@
 """Feed Manager for NSW Rural Fire Service Incidents feed."""
-from typing import List, Tuple, Callable, Awaitable
+from typing import Awaitable, Callable, List, Tuple
 
 from aio_geojson_client.feed_manager import FeedManagerBase
 from aio_geojson_client.status_update import StatusUpdate
