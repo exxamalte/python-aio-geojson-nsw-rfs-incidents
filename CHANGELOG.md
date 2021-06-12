@@ -1,5 +1,12 @@
 # Changes
 
+## 0.4 (12/06/2021)
+* Set aiohttp to a release 3.7.4 or later (thanks @fabaff).
+* Add license tag (thanks @fabaff).
+* Added Python 3.9 support.
+* Bump aio_geojson_client to v0.14.
+* General code improvements.
+
 ## 0.3 (18/02/2020)
 * Bumped version of upstream GeoJSON library.
 * Fixes extraction of polygons from a feed (polygon without hole only).
