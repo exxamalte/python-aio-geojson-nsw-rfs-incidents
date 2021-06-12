@@ -9,7 +9,7 @@ DESCRIPTION = "An async GeoJSON client library for NSW Rural Fire Service Incide
 URL = "https://github.com/exxamalte/python-aio-geojson-nsw-rfs-incidents"
 
 REQUIRES = [
-    "aio_geojson_client>=0.13",
+    "aio_geojson_client>=0.14",
     "aiohttp>=3.7.4,<4",
     "pytz>=2019.01",
 ]
