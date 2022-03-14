@@ -1,7 +1,7 @@
 # python-aio-geojson-nsw-rfs-incidents
 
-[![Build Status](https://travis-ci.org/exxamalte/python-aio-geojson-nsw-rfs-incidents.svg)](https://travis-ci.org/exxamalte/python-aio-geojson-nsw-rfs-incidents)
-[![Coverage Status](https://coveralls.io/repos/github/exxamalte/python-aio-geojson-nsw-rfs-incidents/badge.svg?branch=master)](https://coveralls.io/github/exxamalte/python-aio-geojson-nsw-rfs-incidents?branch=master)
+[![Build Status](https://github.com/exxamalte/python-aio-geojson-nsw-rfs-incidents/workflows/CI/badge.svg?branch=master)](https://github.com/exxamalte/python-aio-geojson-nsw-rfs-incidents/actions?workflow=CI)
+[![codecov](https://codecov.io/gh/exxamalte/python-aio-geojson-nsw-rfs-incidents/branch/master/graph/badge.svg?token=7G2BWWSYRZ)](https://codecov.io/gh/exxamalte/python-aio-geojson-nsw-rfs-incidents)
 [![PyPi](https://img.shields.io/pypi/v/aio-geojson-nsw-rfs-incidents.svg)](https://pypi.python.org/pypi/aio-geojson-nsw-rfs-incidents)
 [![Version](https://img.shields.io/pypi/pyversions/aio-geojson-nsw-rfs-incidents.svg)](https://pypi.python.org/pypi/aio-geojson-nsw-rfs-incidents)
 
