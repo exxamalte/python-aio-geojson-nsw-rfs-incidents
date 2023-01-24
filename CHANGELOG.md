@@ -1,10 +1,16 @@
 # Changes
 
+## 0.6 (24/01/2023)
+* Added Python 3.11 support.
+* Removed deprecated asynctest dependency.
+* Bumped version of upstream aio_geojson_client library to 0.18.
+* Bumped library versions: black.
+
 ## 0.5 (18/02/2022)
 * No functional changes.
 * Added Python 3.10 support.
 * Removed Python 3.6 support.
-* Bumped version of upstream GeoJSON library.
+* Bumped version of upstream aio_geojson_client library to 0.16.
 * Bumped library versions: black, flake8, isort.
 * Migrated to github actions.
 
