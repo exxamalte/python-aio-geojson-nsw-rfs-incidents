@@ -1,10 +1,11 @@
 """NSW Rural Fire Service Incidents feed entry."""
+from __future__ import annotations
+
 import calendar
 import logging
 import re
 from datetime import datetime
 from time import strptime
-from typing import Optional, Tuple
 
 import pytz
 from aio_geojson_client.feed_entry import FeedEntry
@@ -33,12 +34,12 @@ _LOGGER = logging.getLogger(__name__)
 class NswRuralFireServiceIncidentsFeedEntry(FeedEntry):
     """NSW Rural Fire Service Incidents feed entry."""
 
-    def __init__(self, home_coordinates: Tuple[float, float], feature: Feature):
+    def __init__(self, home_coordinates: tuple[float, float], feature: Feature):
         """Initialise this service."""
         super().__init__(home_coordinates, feature)
 
     @property
-    def attribution(self) -> Optional[str]:
+    def attribution(self) -> str | None:
         """Return the attribution of this entry."""
         return ATTRIBUTION
 

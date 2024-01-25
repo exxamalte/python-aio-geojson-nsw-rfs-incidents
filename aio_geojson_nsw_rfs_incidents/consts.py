@@ -10,15 +10,15 @@ ATTRIBUTION = "State of New South Wales (NSW Rural Fire Service)"
 
 CUSTOM_ATTRIBUTE = "custom_attribute"
 
-REGEXP_ATTR_COUNCIL_AREA = "COUNCIL AREA: (?P<{}>[^<]+) <br".format(CUSTOM_ATTRIBUTE)
-REGEXP_ATTR_FIRE = "FIRE: (?P<{}>[^<]+) <br".format(CUSTOM_ATTRIBUTE)
-REGEXP_ATTR_LOCATION = "LOCATION: (?P<{}>[^<]+) <br".format(CUSTOM_ATTRIBUTE)
+REGEXP_ATTR_COUNCIL_AREA = f"COUNCIL AREA: (?P<{CUSTOM_ATTRIBUTE}>[^<]+) <br"
+REGEXP_ATTR_FIRE = f"FIRE: (?P<{CUSTOM_ATTRIBUTE}>[^<]+) <br"
+REGEXP_ATTR_LOCATION = f"LOCATION: (?P<{CUSTOM_ATTRIBUTE}>[^<]+) <br"
 REGEXP_ATTR_RESPONSIBLE_AGENCY = "RESPONSIBLE AGENCY: (?P<{}>[^<]+) <br".format(
     CUSTOM_ATTRIBUTE
 )
-REGEXP_ATTR_SIZE = "SIZE: (?P<{}>[^<]+) <br".format(CUSTOM_ATTRIBUTE)
-REGEXP_ATTR_STATUS = "STATUS: (?P<{}>[^<]+) <br".format(CUSTOM_ATTRIBUTE)
-REGEXP_ATTR_TYPE = "TYPE: (?P<{}>[^<]+) <br".format(CUSTOM_ATTRIBUTE)
+REGEXP_ATTR_SIZE = f"SIZE: (?P<{CUSTOM_ATTRIBUTE}>[^<]+) <br"
+REGEXP_ATTR_STATUS = f"STATUS: (?P<{CUSTOM_ATTRIBUTE}>[^<]+) <br"
+REGEXP_ATTR_TYPE = f"TYPE: (?P<{CUSTOM_ATTRIBUTE}>[^<]+) <br"
 
 URL = "https://www.rfs.nsw.gov.au/feeds/majorIncidents.json"
 

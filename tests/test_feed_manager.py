@@ -23,7 +23,6 @@ async def test_feed_manager(aresponses, event_loop):
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
-
         # This will just record calls and keep track of external ids.
         generated_entity_external_ids = []
         updated_entity_external_ids = []
@@ -64,7 +63,7 @@ async def test_feed_manager(aresponses, event_loop):
         assert entries is not None
         assert len(entries) == 4
         assert feed_manager.last_timestamp == datetime.datetime(
-            2018, 9, 21, 6, 40, tzinfo=datetime.timezone.utc
+            2018, 9, 21, 6, 40, tzinfo=datetime.UTC
         )
         assert len(generated_entity_external_ids) == 4
         assert len(updated_entity_external_ids) == 0

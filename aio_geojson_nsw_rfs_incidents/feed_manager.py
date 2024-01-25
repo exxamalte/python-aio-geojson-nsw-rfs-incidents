@@ -1,5 +1,5 @@
 """Feed Manager for NSW Rural Fire Service Incidents feed."""
-from typing import Awaitable, Callable, List, Tuple
+from collections.abc import Awaitable, Callable
 
 from aio_geojson_client.feed_manager import FeedManagerBase
 from aio_geojson_client.status_update import StatusUpdate
@@ -17,9 +17,9 @@ class NswRuralFireServiceIncidentsFeedManager(FeedManagerBase):
         generate_callback: Callable[[str], Awaitable[None]],
         update_callback: Callable[[str], Awaitable[None]],
         remove_callback: Callable[[str], Awaitable[None]],
-        coordinates: Tuple[float, float],
+        coordinates: tuple[float, float],
         filter_radius: float = None,
-        filter_categories: List[str] = None,
+        filter_categories: list[str] = None,
         status_callback: Callable[[StatusUpdate], Awaitable[None]] = None,
     ):
         """Initialize the NSW Rural Fire Services Feed Manager."""

@@ -23,7 +23,6 @@ async def test_update_ok(aresponses, event_loop):
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
-
         feed = NswRuralFireServiceIncidentsFeed(websession, home_coordinates)
         assert (
             repr(feed) == "<NswRuralFireServiceIncidentsFeed("
@@ -45,7 +44,7 @@ async def test_update_ok(aresponses, event_loop):
         assert round(abs(feed_entry.distance_to_home - 714.4), 1) == 0
         assert repr(feed_entry) == "<NswRuralFireServiceIncidents" "FeedEntry(id=1234)>"
         assert feed_entry.publication_date == datetime.datetime(
-            2018, 9, 21, 6, 30, tzinfo=datetime.timezone.utc
+            2018, 9, 21, 6, 30, tzinfo=datetime.UTC
         )
         assert feed_entry.location == "Location 1"
         assert feed_entry.council_area == "Council 1"
@@ -86,7 +85,6 @@ async def test_update_ok_with_categories(aresponses, event_loop):
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
-
         feed = NswRuralFireServiceIncidentsFeed(
             websession, home_coordinates, filter_categories=["Category 1"]
         )
@@ -122,7 +120,6 @@ async def test_empty_feed(aresponses, event_loop):
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
-
         feed = NswRuralFireServiceIncidentsFeed(websession, home_coordinates)
         assert (
             repr(feed) == "<NswRuralFireServiceIncidentsFeed("
