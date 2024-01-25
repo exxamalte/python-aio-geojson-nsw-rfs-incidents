@@ -1,5 +1,7 @@
 """Test for the NSW Rural Fire Service Incidents GeoJSON feed manager."""
+import asyncio
 import datetime
+from http import HTTPStatus
 
 import aiohttp
 import pytest
@@ -11,18 +13,16 @@ from tests.utils import load_fixture
 
 
 @pytest.mark.asyncio
-async def test_feed_manager(aresponses, event_loop):
+async def test_feed_manager(mock_aioresponse):
     """Test the feed manager."""
     home_coordinates = (-31.0, 151.0)
-    aresponses.add(
-        "www.rfs.nsw.gov.au",
-        "/feeds/majorIncidents.json",
-        "get",
-        aresponses.Response(text=load_fixture("incidents-1.json"), status=200),
-        match_querystring=True,
+    mock_aioresponse.get(
+        "https://www.rfs.nsw.gov.au/feeds/majorIncidents.json",
+        status=HTTPStatus.OK,
+        body=load_fixture("incidents-1.json"),
     )
 
-    async with aiohttp.ClientSession(loop=event_loop) as websession:
+    async with aiohttp.ClientSession(loop=asyncio.get_running_loop()) as websession:
         # This will just record calls and keep track of external ids.
         generated_entity_external_ids = []
         updated_entity_external_ids = []
