@@ -1,7 +1,8 @@
 """NSW Rural Fire Service Incidents feed."""
+from __future__ import annotations
+
 import logging
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple
 
 from aio_geojson_client.feed import GeoJsonFeed
 from aiohttp import ClientSession
@@ -21,9 +22,9 @@ class NswRuralFireServiceIncidentsFeed(
     def __init__(
         self,
         websession: ClientSession,
-        home_coordinates: Tuple[float, float],
+        home_coordinates: tuple[float, float],
         filter_radius: float = None,
-        filter_categories: List[str] = None,
+        filter_categories: list[str] = None,
     ):
         """Initialise this service."""
         super().__init__(websession, home_coordinates, URL, filter_radius=filter_radius)
@@ -40,14 +41,14 @@ class NswRuralFireServiceIncidentsFeed(
         )
 
     def _new_entry(
-        self, home_coordinates: Tuple[float, float], feature, global_data: Dict
+        self, home_coordinates: tuple[float, float], feature, global_data: dict
     ) -> NswRuralFireServiceIncidentsFeedEntry:
         """Generate a new entry."""
         return NswRuralFireServiceIncidentsFeedEntry(home_coordinates, feature)
 
     def _filter_entries(
-        self, entries: List[NswRuralFireServiceIncidentsFeedEntry]
-    ) -> List[NswRuralFireServiceIncidentsFeedEntry]:
+        self, entries: list[NswRuralFireServiceIncidentsFeedEntry]
+    ) -> list[NswRuralFireServiceIncidentsFeedEntry]:
         """Filter the provided entries."""
         filtered_entries = super()._filter_entries(entries)
         if self._filter_categories:
@@ -60,8 +61,8 @@ class NswRuralFireServiceIncidentsFeed(
         return filtered_entries
 
     def _extract_last_timestamp(
-        self, feed_entries: List[NswRuralFireServiceIncidentsFeedEntry]
-    ) -> Optional[datetime]:
+        self, feed_entries: list[NswRuralFireServiceIncidentsFeedEntry]
+    ) -> datetime | None:
         """Determine latest (newest) entry from the filtered feed."""
         if feed_entries:
             dates = sorted(
@@ -71,6 +72,6 @@ class NswRuralFireServiceIncidentsFeed(
             return dates[0]
         return None
 
-    def _extract_from_feed(self, feed: FeatureCollection) -> Optional[Dict]:
+    def _extract_from_feed(self, feed: FeatureCollection) -> dict | None:
         """Extract global metadata from feed."""
         return None

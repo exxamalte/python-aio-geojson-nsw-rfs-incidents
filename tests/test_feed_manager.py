@@ -23,7 +23,6 @@ async def test_feed_manager(aresponses, event_loop):
     )
 
     async with aiohttp.ClientSession(loop=event_loop) as websession:
-
         # This will just record calls and keep track of external ids.
         generated_entity_external_ids = []
         updated_entity_external_ids = []
