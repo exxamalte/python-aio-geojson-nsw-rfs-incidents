@@ -1,4 +1,6 @@
 """Feed Manager for NSW Rural Fire Service Incidents feed."""
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable
 
 from aio_geojson_client.feed_manager import FeedManagerBase
