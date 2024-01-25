@@ -1,3 +1,4 @@
+"""Setup of aio_geojson_nsw_rfs_incidents library."""
 import os
 
 from setuptools import find_packages, setup
@@ -15,7 +16,7 @@ REQUIRES = [
 ]
 
 
-with open("README.md", "r") as fh:
+with open("README.md") as fh:
     long_description = fh.read()
 
 HERE = os.path.abspath(os.path.dirname(__file__))
@@ -35,7 +36,6 @@ setup(
     url=URL,
     packages=find_packages(exclude=("tests",)),
     classifiers=[
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
