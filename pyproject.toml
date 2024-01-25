@@ -6,7 +6,7 @@ profile = "black"
 src_paths = ["aio_geojson_nsw_rfs_incidents", "tests"]
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py38"
 
 select = [
     "B007", # Loop control variable {name} not used within loop body
