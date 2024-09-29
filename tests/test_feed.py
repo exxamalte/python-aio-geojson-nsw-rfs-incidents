@@ -1,11 +1,12 @@
 """Test for the NSW Rural Fire Service Incidents GeoJSON feed."""
+
 import asyncio
 import datetime
 from http import HTTPStatus
 
+from aio_geojson_client.consts import UPDATE_OK
 import aiohttp
 import pytest
-from aio_geojson_client.consts import UPDATE_OK
 
 from aio_geojson_nsw_rfs_incidents.consts import ATTRIBUTION
 from aio_geojson_nsw_rfs_incidents.feed import NswRuralFireServiceIncidentsFeed
