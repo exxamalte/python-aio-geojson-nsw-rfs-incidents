@@ -1,8 +1,9 @@
 """NSW Rural Fire Service Incidents feed."""
+
 from __future__ import annotations
 
-import logging
 from datetime import datetime
+import logging
 
 from aio_geojson_client.feed import GeoJsonFeed
 from aiohttp import ClientSession
@@ -23,8 +24,8 @@ class NswRuralFireServiceIncidentsFeed(
         self,
         websession: ClientSession,
         home_coordinates: tuple[float, float],
-        filter_radius: float = None,
-        filter_categories: list[str] = None,
+        filter_radius: float | None = None,
+        filter_categories: list[str] | None = None,
     ):
         """Initialise this service."""
         super().__init__(websession, home_coordinates, URL, filter_radius=filter_radius)
@@ -32,13 +33,7 @@ class NswRuralFireServiceIncidentsFeed(
 
     def __repr__(self):
         """Return string representation of this feed."""
-        return "<{}(home={}, url={}, radius={}, categories={})>".format(
-            self.__class__.__name__,
-            self._home_coordinates,
-            self._url,
-            self._filter_radius,
-            self._filter_categories,
-        )
+        return f"<{self.__class__.__name__}(home={self._home_coordinates}, url={self._url}, radius={self._filter_radius}, categories={self._filter_categories})>"
 
     def _new_entry(
         self, home_coordinates: tuple[float, float], feature, global_data: dict

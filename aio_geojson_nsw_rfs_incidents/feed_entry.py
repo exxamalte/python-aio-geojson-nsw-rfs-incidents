@@ -1,15 +1,16 @@
 """NSW Rural Fire Service Incidents feed entry."""
+
 from __future__ import annotations
 
 import calendar
+from datetime import datetime
 import logging
 import re
-from datetime import datetime
 from time import strptime
 
-import pytz
 from aio_geojson_client.feed_entry import FeedEntry
 from geojson import Feature
+import pytz
 
 from .consts import (
     ATTR_CATEGORY,
