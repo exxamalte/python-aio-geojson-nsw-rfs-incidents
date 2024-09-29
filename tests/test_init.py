@@ -1,4 +1,5 @@
 """Test for the NSW Rural Fire Service Incidents GeoJSON general setup."""
+
 from aio_geojson_nsw_rfs_incidents import __version__
 
 

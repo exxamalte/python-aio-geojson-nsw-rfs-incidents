@@ -1,4 +1,5 @@
 """Feed Manager for NSW Rural Fire Service Incidents feed."""
+
 from __future__ import annotations
 
 from collections.abc import Awaitable, Callable
@@ -20,9 +21,9 @@ class NswRuralFireServiceIncidentsFeedManager(FeedManagerBase):
         update_callback: Callable[[str], Awaitable[None]],
         remove_callback: Callable[[str], Awaitable[None]],
         coordinates: tuple[float, float],
-        filter_radius: float = None,
-        filter_categories: list[str] = None,
-        status_callback: Callable[[StatusUpdate], Awaitable[None]] = None,
+        filter_radius: float | None = None,
+        filter_categories: list[str] | None = None,
+        status_callback: Callable[[StatusUpdate], Awaitable[None]] | None = None,
     ):
         """Initialize the NSW Rural Fire Services Feed Manager."""
         feed = NswRuralFireServiceIncidentsFeed(
