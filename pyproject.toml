@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aio_geojson_nsw_rfs_incidents"
-version  = "0.7"
+version  = "0.8"
 requires-python = ">= 3.9"
 authors = [
   {name = "Malte Franken", email = "coding@subspace.de"},

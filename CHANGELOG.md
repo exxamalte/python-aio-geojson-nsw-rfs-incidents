@@ -1,5 +1,10 @@
 # Changes
 
+## 0.8 (07/10/2024)
+* Bump aio_geojson_client to 0.21.
+* Removed Python 3.8 support.
+* Code quality improvements.
+
 ## 0.7 (26/01/2024)
 * Bumped version of upstream aio_geojson_client library to 0.20.
 * Improved JSON parsing error handling, especially when not using Python's built-in JSON parsing library.
