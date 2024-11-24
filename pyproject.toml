@@ -45,7 +45,7 @@ tests = [
 [project.urls]
 Repository = "https://github.com/exxamalte/python-aio-geojson-nsw-rfs-incidents"
 Issues = "https://github.com/exxamalte/python-aio-geojson-nsw-rfs-incidents/issues"
-Changelog = "https://github.com/exxamalte/python-aio-geojson-nsw-rfs-incidents/blob/main/CHANGELOG.md"
+Changelog = "https://github.com/exxamalte/python-aio-geojson-nsw-rfs-incidents/blob/master/CHANGELOG.md"
 
 [tool.ruff.lint]
 select = [
