@@ -22,4 +22,10 @@ REGEXP_ATTR_TYPE = f"TYPE: (?P<{CUSTOM_ATTRIBUTE}>[^<]+) <br"
 
 URL = "https://www.rfs.nsw.gov.au/feeds/majorIncidents.json"
 
-VALID_CATEGORIES = ["Emergency Warning", "Watch and Act", "Advice", "Not Applicable"]
+VALID_CATEGORIES = [
+    "Emergency Warning",
+    "Watch and Act",
+    "Advice",
+    "Not Applicable",
+    "Planned Burn",
+]
