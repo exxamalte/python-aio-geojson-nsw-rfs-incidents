@@ -1,5 +1,17 @@
 # Changes
 
+## 2026.6.0 (30/06/2026)
+* Add category "Planned Burn".
+* Added Python 3.13 support.
+* Added Python 3.14 support.
+* Removed Python 3.9 support.
+* Removed Python 3.10 support.
+* Bump aio_geojson_client to 2026.6.0
+* Bump pytz to 2026.2
+* Bump ruff to 0.15.20
+* Code quality improvements
+* Changing to date-based versioning
+
 ## 0.8 (07/10/2024)
 * Bump aio_geojson_client to 0.21.
 * Removed Python 3.8 support.
