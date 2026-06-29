@@ -14,10 +14,10 @@ from tests.utils import load_fixture
 
 
 @pytest.mark.asyncio
-async def test_update_ok(mock_aioresponse):
+async def test_update_ok(mock_aiointercept):
     """Test updating feed is ok."""
     home_coordinates = (-31.0, 151.0)
-    mock_aioresponse.get(
+    mock_aiointercept.get(
         "https://www.rfs.nsw.gov.au/feeds/majorIncidents.json",
         status=HTTPStatus.OK,
         body=load_fixture("incidents-1.json"),
@@ -43,9 +43,9 @@ async def test_update_ok(mock_aioresponse):
         assert feed_entry.external_id == "1234"
         assert feed_entry.coordinates == (-37.2345, 149.1234)
         assert round(abs(feed_entry.distance_to_home - 714.4), 1) == 0
-        assert repr(feed_entry) == "<NswRuralFireServiceIncidents" "FeedEntry(id=1234)>"
+        assert repr(feed_entry) == "<NswRuralFireServiceIncidentsFeedEntry(id=1234)>"
         assert feed_entry.publication_date == datetime.datetime(
-            2018, 9, 21, 6, 30, tzinfo=datetime.timezone.utc
+            2018, 9, 21, 6, 30, tzinfo=datetime.UTC
         )
         assert feed_entry.location == "Location 1"
         assert feed_entry.council_area == "Council 1"
@@ -74,10 +74,10 @@ async def test_update_ok(mock_aioresponse):
 
 
 @pytest.mark.asyncio
-async def test_update_ok_with_categories(mock_aioresponse):
+async def test_update_ok_with_categories(mock_aiointercept):
     """Test updating feed is ok, filtered by category."""
     home_coordinates = (-31.0, 151.0)
-    mock_aioresponse.get(
+    mock_aiointercept.get(
         "https://www.rfs.nsw.gov.au/feeds/majorIncidents.json",
         status=HTTPStatus.OK,
         body=load_fixture("incidents-1.json"),
@@ -103,14 +103,14 @@ async def test_update_ok_with_categories(mock_aioresponse):
         assert feed_entry is not None
         assert feed_entry.title == "Title 1"
         assert feed_entry.category == "Category 1"
-        assert repr(feed_entry) == "<NswRuralFireServiceIncidents" "FeedEntry(id=1234)>"
+        assert repr(feed_entry) == "<NswRuralFireServiceIncidentsFeedEntry(id=1234)>"
 
 
 @pytest.mark.asyncio
-async def test_empty_feed(mock_aioresponse):
+async def test_empty_feed(mock_aiointercept):
     """Test updating feed is ok when feed does not contain any entries."""
     home_coordinates = (-41.2, 174.7)
-    mock_aioresponse.get(
+    mock_aiointercept.get(
         "https://www.rfs.nsw.gov.au/feeds/majorIncidents.json",
         status=HTTPStatus.OK,
         body=load_fixture("incidents-2.json"),

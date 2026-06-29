@@ -14,10 +14,10 @@ from tests.utils import load_fixture
 
 
 @pytest.mark.asyncio
-async def test_feed_manager(mock_aioresponse):
+async def test_feed_manager(mock_aiointercept):
     """Test the feed manager."""
     home_coordinates = (-31.0, 151.0)
-    mock_aioresponse.get(
+    mock_aiointercept.get(
         "https://www.rfs.nsw.gov.au/feeds/majorIncidents.json",
         status=HTTPStatus.OK,
         body=load_fixture("incidents-1.json"),
@@ -64,7 +64,7 @@ async def test_feed_manager(mock_aioresponse):
         assert entries is not None
         assert len(entries) == 4
         assert feed_manager.last_timestamp == datetime.datetime(
-            2018, 9, 21, 6, 40, tzinfo=datetime.timezone.utc
+            2018, 9, 21, 6, 40, tzinfo=datetime.UTC
         )
         assert len(generated_entity_external_ids) == 4
         assert len(updated_entity_external_ids) == 0
